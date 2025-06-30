@@ -1,0 +1,48 @@
+﻿@page
+@model AdminOnlyModel
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary fw-bold">Admin Dashboard</h2>
+        <div>
+            <a asp-page="/Users/ManageRoles" class="btn btn-outline-secondary me-2">Manage Roles</a>
+            <a asp-page="/Admin/Create" class="btn btn-outline-success">Create Voucher</a>
+        </div>
+    </div>
+
+    <div class="card shadow-sm mb-5">
+        <div class="card-header bg-light fw-semibold">
+            Create New Account
+        </div>
+        <div class="card-body">
+            <form method="post" asp-page-handler="Create" class="row g-3">
+                <div class="col-md-6">
+                    <label asp-for="FormModel.Name" class="form-label">Name</label>
+                    <input asp-for="FormModel.Name" class="form-control" />
+                    <span asp-validation-for="FormModel.Name" class="text-danger small"></span>
+                </div>
+                <div class="col-md-6">
+                    <label asp-for="FormModel.Code" class="form-label">Code</label>
+                    <input asp-for="FormModel.Code" class="form-control" />
+                    <span asp-validation-for="FormModel.Code" class="text-danger small"></span>
+                </div>
+                <div class="col-md-12">
+                    <label asp-for="FormModel.ParentId" class="form-label">Parent Account (Optional)</label>
+                    <select asp-for="FormModel.ParentId" asp-items="Model.ParentOptions" class="form-select">
+                        <option value="">-- Root Level --</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary mt-2">Create Account</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <h4 class="text-secondary">Chart of Accounts</h4>
+        <div class="bg-white border rounded shadow-sm p-3">
+            @await Html.PartialAsync("_ChartTreePartial", Model.AccountsTree)
+        </div>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+﻿@page
+@model MiniAccountProject.Pages.Admin.CreateModel
+
+@{
+    ViewData["Title"] = "New Voucher Entry";
+}
+
+<div class="container mt-5">
+    <div class="card shadow rounded-4 p-4">
+        <h2 class="mb-4 text-primary fw-bold">@ViewData["Title"]</h2>
+
+        <form method="post">
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label asp-for="Voucher.Date" class="form-label">Date:</label>
+                    <input type="date" asp-for="Voucher.Date" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="Voucher.ReferenceNo" class="form-label">Reference No:</label>
+                    <input asp-for="Voucher.ReferenceNo" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <label asp-for="Voucher.VoucherType" class="form-label">Voucher Type:</label>
+                    <select asp-for="Voucher.VoucherType" class="form-select">
+                        <option value="Journal">Journal</option>
+                        <option value="Payment">Payment</option>
+                        <option value="Receipt">Receipt</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mt-4">
+                <button type="submit" class="btn btn-success px-4">Save Voucher</button>
+                <a asp-page="./Index" class="btn btn-secondary ms-2">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let entryIndex = @Model.Voucher.Entries.Count;
+
+            document.getElementById('add-entry').addEventListener('click', function () {
+                const container = document.getElementById('entries-section');
+                const row = document.createElement('div');
+                row.className = 'row g-3 mb-2 entry-row';
+
+                row.innerHTML = `
+                    <div class="col-md-4">
+                        <select name="Voucher.Entries[${entryIndex}].AccountId" class="form-select">
+                            <option value="">-- Select Account --</option>
+                            ${@Html.Raw(string.Join("", Model.Accounts.Select(acc =>
+                                $"<option value='{acc.Id}'>{acc.Name}</option>")))}
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <input name="Voucher.Entries[${entryIndex}].Debit" class="form-control" placeholder="Debit" />
+                    </div>
+                    <div class="col-md-3">
+                        <input name="Voucher.Entries[${entryIndex}].Credit" class="form-control" placeholder="Credit" />
+                    </div>
+                    <div class="col-md-2 text-end">
+                        <button type="button" class="btn btn-danger btn-sm remove-entry">Remove</button>
+                    </div>
+                `;
+
+                container.appendChild(row);
+                entryIndex++;
+            });
+
+            document.getElementById('entries-section').addEventListener('click', function (e) {
+                if (e.target.classList.contains('remove-entry')) {
+                    e.target.closest('.entry-row').remove();
+                }
+            });
+        });
+    </script>
+}
