@@ -48,23 +48,22 @@ Only authorized users can access admin functionalities.
 
 View all submitted Journal, Payment, and Receipt Vouchers.
 
-Add New Voucher.
+Add New Chart.
 ![Screenshot](img/img4.png)
 
 ## Manage User Role
 The Manage User Roles module allows administrators to control access and responsibilities within the system by assigning specific roles to users. This ensures that only authorized users can perform sensitive actions.
 ![Screenshot](img/img5.png)
 
-## Accoutant Only Page
-The Accountant Only Page is a secure section of the system accessible exclusively by users with the Accountant role. It provides the core tools needed for day-to-day financial data entry and management. (Will Update this section...)
-![Screenshot](img/img6.png)
-
 ## Create Voucher
 The Create Voucher page is the core financial entry screen of the Mini Account Management System, designed specifically for accountants to record financial transactions in the form of vouchers. It supports Journal, Payment, and Receipt voucher types.
-![Screenshot](img/img7.png)
+![Screenshot](img/img6.png)
 
 ## View Vouchers
 The View Voucher page provides a detailed, read-only view of a single voucher entry. It allows only admins to inspect all voucher details, ensuring transparency and easy auditing of financial transactions.
-![Screenshot](img/img8.png)
+![Screenshot](img/img7.png)
+
+## Database
+![Screenshot](img/database.png)
 
 ## *This Mini Account Management System is a work in progress. I plan to continuously improve and expand its features eventually.*
