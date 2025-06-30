@@ -1,4 +1,4 @@
-# MiniAccountProject
+# MiniAccountManagementProject
 
 This is a simple yet functional **Mini Account Management System** built using **ASP.NET Core Razor Pages**. The system allows users to manage financial transactions through vouchers (Journal, Payment, and Receipt), track debit/credit entries, and maintain a basic chart of accounts.
 
